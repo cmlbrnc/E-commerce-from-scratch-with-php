@@ -15,50 +15,31 @@ class boots {
         if(empty($url[0])){
           require 'controllers/main.php';
 
-          $controller = new main();
+          $maincontroller = new main();
 
+        }else {
+            $file='controllers/'.$url[0].'.php';
+        
+            if (file_exists($file)) {
+                require $file;
+                $maincontroller = new $url[0];
+
+              
+            } else {
+                require 'controllers/errors.php';
+
+                $err= new errors();
+            }
         }
-        $file='controllers/'.$url[0].'.php';
-        
-         if(file_exists($file)) {
-        
-            require $file;
-            $maincontroller = new $url[0];
-            if(isset($url[2])) {
-        
-            
-        
-                $maincontroller->{$url[1]}($url[2]);
-               
-                
-            
-              }else {
-            
-            
-                if(isset($url[1])) {
-            
-                
-            
-                    $maincontroller->{$url[1]}();
-                
-                  }
-              }
-        
-         }else{
-        
-        
-            require 'controllers/errors.php';
 
-            $err= new errors();
-
-
-
-
-        
-            
-        
-         }
-        
+          if (isset($url[2])) {
+                    $maincontroller->{$url[1]}($url[2]);
+                } 
+                else {
+                    if (isset($url[1])) {
+                        $maincontroller->{$url[1]}();
+                    }
+                }
         
     }
 

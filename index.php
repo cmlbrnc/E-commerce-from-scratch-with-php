@@ -11,6 +11,9 @@ spl_autoload_register(function($className) {
  
 });
 
+require 'config/general.php';
+require 'config/database.php';
+
 
 $boots = new boots();
 

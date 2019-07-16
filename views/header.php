@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Home</title>
 
-<link rel="stylesheet" href="design/bootstrap.css">
+<link rel="stylesheet" href="<?php  echo URL;  ?>/design/bootstrap.css">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 
@@ -16,5 +16,6 @@
     
     	<div class="col-lg-12 bg-danger">
         <h5>  HEADER</h5>
+        <a href="<?php  echo URL;  ?>/listing" class="">listing</a> | <a href="<?php  echo URL;  ?>/create/" class="">save</a> | <a href="<?php  echo URL;  ?>/error" class="">hata</a> |
         </div>
         
