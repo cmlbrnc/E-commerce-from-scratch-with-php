@@ -6,6 +6,8 @@ class Controller {
     
 
       $this->view =new View();
+      $this->form =new Form();
+   
   }
     
   

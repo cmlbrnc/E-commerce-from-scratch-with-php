@@ -1,0 +1,22 @@
+{
+  "name": "php-mvc-ecommerce-from-scratch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmlbrnc/E-commerce-from-scratch-with-php.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cmlbrnc/E-commerce-from-scratch-with-php/issues"
+  },
+  "homepage": "https://github.com/cmlbrnc/E-commerce-from-scratch-with-php#readme",
+  "dependencies": {
+    "gulp": "^4.0.2"
+  }
+}

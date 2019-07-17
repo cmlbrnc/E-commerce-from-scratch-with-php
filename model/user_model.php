@@ -1,6 +1,6 @@
 <?php  
 
-class create_model extends Model{
+class user_model extends Model{
 
     function __construct() 
     {
@@ -12,6 +12,16 @@ class create_model extends Model{
     function check($tablename,$columns,$values) {
 
       return $this->db->add($tablename,$columns,$values);
+
+    }
+    function list($tablename,$condition) {
+
+      return $this->db->listing($tablename,$condition);
+
+    }
+    function deleteuser($tablename,$id) {
+
+      return $this->db->delete($tablename,$id);
 
     }
 

@@ -7,6 +7,8 @@ class Database extends PDO {
     function __construct()
     {
         parent::__construct('mysql:host=127.0.0.1;dbname=db_mvcproject','root','');
+
+        $this->res =new _response();
     }
 
 
@@ -32,11 +34,52 @@ class Database extends PDO {
       $query->execute($values);
       if($query) {
 
-        return "success"; 
+        return $this->res->success("Succesfully Added","/user/add"); 
       }
       else {
-        return "failed";
+        return $this->res->failed("Db error has been occured","/user/add"); 
       }
+
+    }
+
+    function listing ($tablename,$condition=false) {
+
+      if($condition=false) {
+
+        $query ="select *from ".$tablename;
+
+      }else {
+
+        $query ="select *from ".$tablename." ".$condition;
+
+
+
+      }
+
+      $end=$this->prepare($query);
+      $end->execute();
+
+      return $end->fetchAll();
+
+    }
+
+    function delete ($tablename,$id) {
+
+      $query ="delete from ".$tablename." where id=".$id;
+
+      $end=$this->prepare($query);
+      if($end->execute())
+      {
+        return $this->res->success("Succesfully Deleted","/user/listing"); 
+
+      }else {
+
+        $query->errorInfo();
+
+        return $this->res->failed($query,"/user/listing"); 
+
+      }
+    
 
     }
 

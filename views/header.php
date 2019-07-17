@@ -14,8 +14,8 @@
 	<div class="row">
     
     
-    	<div class="col-lg-12 bg-danger">
-        <h5>  HEADER</h5>
-        <a href="<?php  echo URL;  ?>/listing" class="">listing</a> | <a href="<?php  echo URL;  ?>/create/" class="">save</a> | <a href="<?php  echo URL;  ?>/error" class="">hata</a> |
+    	<div class="col-lg-12 bg-light p-2 mt-2">
+        
+        <a href="<?php  echo URL;  ?>/user/listing" class="">List users</a> | <a href="<?php  echo URL;  ?>/user/add" class="">Add a row</a> | <a href="<?php  echo URL;  ?>" class="">Error</a> 
         </div>
         

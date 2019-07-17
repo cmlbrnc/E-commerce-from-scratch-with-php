@@ -33,6 +33,8 @@ class boots {
         }
 
           if (isset($url[2])) {
+
+                 
                     $maincontroller->{$url[1]}($url[2]);
                 } 
                 else {
@@ -44,8 +46,3 @@ class boots {
     }
 
 }
-
-
-
-
-?>

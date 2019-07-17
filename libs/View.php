@@ -8,7 +8,7 @@ class View {
  
   }
 
-  function show ($fileName){
+  function show ($fileName,$data=null){
     require 'views/'.$fileName.'.php';
   }
     

@@ -1,5 +1,5 @@
    
-        <div class="col-lg-12 bg-info">
+        <div class="col-lg-12 bg-light p-2 mt-2">
         <h5>  FOOTER</h5>
         </div>
     
