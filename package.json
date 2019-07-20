@@ -16,7 +16,9 @@
     "url": "https://github.com/cmlbrnc/E-commerce-from-scratch-with-php/issues"
   },
   "homepage": "https://github.com/cmlbrnc/E-commerce-from-scratch-with-php#readme",
-  "dependencies": {
-    "gulp": "^4.0.2"
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-connect-php": "^1.0.3"
   }
 }

@@ -16,6 +16,6 @@
     
     	<div class="col-lg-12 bg-light p-2 mt-2">
         
-        <a href="<?php  echo URL;  ?>/user/listing" class="">List users</a> | <a href="<?php  echo URL;  ?>/user/add" class="">Add a row</a> | <a href="<?php  echo URL;  ?>" class="">Error</a> 
+        <a href="<?php  echo URL;  ?>/user/listing" class="">Lists users</a> | <a href="<?php  echo URL;  ?>/user/add" class="">Add a row</a> | <a href="<?php  echo URL;  ?>" class="">Error</a> 
         </div>
         
