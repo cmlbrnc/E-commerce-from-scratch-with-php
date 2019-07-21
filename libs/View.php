@@ -1,21 +1,10 @@
 <?php  
 class View {
   
-  function __construct() 
-  {
-  
-
- 
-  }
-
-  function show ($fileName,$data=null){
+  function show ($fileName,$data=null,$redirect=null){
     require 'views/'.$fileName.'.php';
   }
     
-
 }
-
-
-
 
 ?>

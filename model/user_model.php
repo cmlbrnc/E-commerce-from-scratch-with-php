@@ -15,13 +15,23 @@ class user_model extends Model{
 
     }
     function list($tablename,$condition) {
-
+    
       return $this->db->listing($tablename,$condition);
 
     }
     function deleteuser($tablename,$id) {
 
       return $this->db->delete($tablename,$id);
+
+    }
+    function updateuser($tablename,$columns,$data,$condition) {
+
+      return $this->db->update($tablename,$columns,$data,$condition);
+
+    }
+    function  searchuser($tablename,$condition) {
+
+      return $this->db->search($tablename,$condition);
 
     }
 

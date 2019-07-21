@@ -7,6 +7,7 @@ class Controller {
 
       $this->view =new View();
       $this->form =new Form();
+      $this->response =new _response();
    
   }
     

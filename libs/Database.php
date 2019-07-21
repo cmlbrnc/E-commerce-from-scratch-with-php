@@ -3,10 +3,11 @@
 class Database extends PDO {
     
     protected $array; ///this is our var in our class
+    protected $array2; 
 
     function __construct()
     {
-        parent::__construct('mysql:host=127.0.0.1;dbname=db_mvcproject','root','');
+        parent::__construct('mysql:host='.DB_HOST.';dbname='.DB_NAME,DB_USER,DB_PASS);
 
         $this->res =new _response();
     }
@@ -43,18 +44,30 @@ class Database extends PDO {
     }
 
     function listing ($tablename,$condition=false) {
+        
+      if($condition==false) {
 
-      if($condition=false) {
-
-        $query ="select *from ".$tablename;
-
+         $query ="select *from ".$tablename;
+      
       }else {
 
         $query ="select *from ".$tablename." ".$condition;
 
 
-
       }
+
+      $end=$this->prepare($query);
+      $end->execute();
+
+      return $end->fetchAll();
+
+    }
+    function search ($tablename,$condition) {
+
+  
+
+        $query ="select *from ".$tablename." where ".$condition;
+
 
       $end=$this->prepare($query);
       $end->execute();
@@ -80,6 +93,53 @@ class Database extends PDO {
 
       }
     
+
+    }
+
+
+    function update ($tablename,$columns,$data,$condition) {
+
+       foreach ($columns as $value) {
+         $this->array2[]=$value."=?";
+       }
+
+       $lastColumns=join(",",$this->array2);
+      
+
+
+      $query ="update ".$tablename." set ".$lastColumns." where ".$condition;
+
+      $end=$this->prepare($query);
+      if($end->execute($data))
+      {
+        return $this->res->success("Succesfully Update","/user/listing"); 
+
+      }else {
+
+      
+
+        return $this->res->error("Database Error!","/user/listing"); 
+
+      }
+    
+
+    }
+
+    function logincontrol($tablename,$condition) {
+
+      // important dotos
+      $query ="select * from ".$tablename." where ".$condition;
+
+
+      $end=$this->prepare($query);
+      $end->execute();
+      if($end->rowCount()>0){
+        Session::init();
+        Session::set("username",true);
+
+      }
+
+      return  $end->rowCount();
 
     }
 

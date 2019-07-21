@@ -12,10 +12,26 @@
 
 <div class="container">
 	<div class="row">
-    
-    
+   
     	<div class="col-lg-12 bg-light p-2 mt-2">
         
         <a href="<?php  echo URL;  ?>/user/listing" class="">Lists users</a> | <a href="<?php  echo URL;  ?>/user/add" class="">Add a row</a> | <a href="<?php  echo URL;  ?>" class="">Error</a> 
+
+        <form action="<?php  echo URL;  ?>/user/search" method="POST">
+    
+    <input   type="text" name="word"   placeholder="Search"   >
+    <input class="btn btn-danger" type="submit" name="submit" value="Search"  >
+
+
+    </form>
+      <?php  if(Session::get("username")) :  ?>
+    <a href="<?php  echo URL;  ?>/panel/logout" class="">Log out</a>
+    <?php  else:  ?> 
+    <a href="<?php  echo URL;  ?>/login/form" class="">Log in</a>
+    <?php  endif;  ?>
         </div>
+
+
+    
+    
         

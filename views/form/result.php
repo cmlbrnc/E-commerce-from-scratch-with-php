@@ -1,8 +1,6 @@
 <?php require 'views/header.php' ?>
 
 <div class="col-lg-12 text-center">
-
-
 <?php 
 
 if(is_array($data)) {
@@ -20,19 +18,10 @@ if(is_array($data)) {
 {
     echo $data;
 }
-
-
-
-
 ?>
-
-
-
-
 
 </div>
 
-
- 
-
 <?php require 'views/footer.php' ?>
+
+
