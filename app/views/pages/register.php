@@ -34,63 +34,78 @@
 		// } else {
 
 		if (isset($data["info"])) {
-			
+
 			echo $data["info"] . "<br>";
-			
-		} 
-		else {
+		} else {
 
 			?>
 			<h2>Registration</h2>
 			<div class="registration-grids">
 
-			<?php  
-			
-			
-		if (isset($data["error"])) {
-				
-			foreach ($data["error"] as $value) {
-					
-			echo $value . " <br>";
-					
-			} 
-				
-		
-				
-		} 
-	    ?>
+				<?php
+
+
+				if (isset($data["error"])) {
+					echo '<div class="alert alert-danger mt-5">';
+					foreach ($data["error"] as $value) {
+
+						echo ucFirst($value) . " <br>";
+					}
+					echo "</div>";
+				}
+				?>
 
 				<div class="reg-form">
 					<div class="reg">
 						<p>Welcome, please enter the following details to continue.</p>
 						<p>If you have previously registered with us, <a href="<?php echo URL; ?>/subscriber/login">click here</a></p>
-						<form action="<?php echo URL  ?>/subscriber/registercontrol" method="POST">
-							<ul>
-								<li class="text-info">First Name: </li>
-								<li><input type="text" name="name"></li>
-							</ul>
-							<ul>
-								<li class="text-info">Last Name: </li>
-								<li><input type="text" name="lastname"></li>
-							</ul>
-							<ul>
-								<li class="text-info">Email: </li>
-								<li><input type="text" name="email"></li>
-							</ul>
-							<ul>
-								<li class="text-info">Password: </li>
-								<li><input type="password" name="password"></li>
-							</ul>
-							<ul>
-								<li class="text-info">Re-enter Password:</li>
-								<li><input type="password" name="repassword"></li>
-							</ul>
-							<ul>
-								<li class="text-info">Mobile Number:</li>
-								<li><input type="text" name="tel"></li>
-							</ul>
-							<input type="submit" value="REGISTER NOW">
-							<p class="click">By clicking this button, you are agree to my <a href="#">Policy Terms and Conditions.</a></p>
+
+						<?php Form::element_init(1, array(
+							"action" => URL . "/subscriber/registercontrol",
+							"method" => "POST"
+
+						));  ?>
+
+						<ul>
+							<li class="text-info"><span class="text-danger">*</span>Name: </li>
+							<li>
+
+								<?php
+								Form::element_init("2", array("type" => "text", "name" => "name", "required" => "required")); ?>
+							</li>
+						</ul>
+						<ul>
+							<li class="text-info"><span class="text-danger">*</span> Surname: </li>
+							<li> <?php
+									Form::element_init("2", array("type" => "text", "name" => "lastname", "required" => "required")); ?></li>
+						</ul>
+						<ul>
+							<li class="text-info"><span class="text-danger">*</span> Email: </li>
+							<li> <?php
+									Form::element_init("2", array("type" => "text", "name" => "email", "required" => "required")); ?></li>
+						</ul>
+						<ul>
+							<li class="text-info"><span class="text-danger">*</span> Password: </li>
+							<li> <?php
+									Form::element_init("2", array("type" => "password", "name" => "password", "required" => "required")); ?></li>
+						</ul>
+						<ul>
+							<li class="text-info"><span class="text-danger">*</span> Sifre Tekrar:</li>
+							<li><?php
+								Form::element_init("2", array("type" => "password", "name" => "repassword", "required" => "required")); ?></li>
+						</ul>
+						<ul>
+							<li class="text-info"><span class="text-danger">*</span> Tel:</li>
+							<li> <?php
+									Form::element_init("2", array("type" => "text", "name" => "tel", "required" => "required")); ?></li>
+						</ul>
+
+						<ul>
+							<li class="text-success">* is required field</li>
+						</ul>
+
+						<input type="submit" value="REGISTER NOW">
+						<p class="click">By clicking this button, you are agree to my <a href="#">Policy Terms and Conditions.</a></p>
 						</form>
 					</div>
 				</div>

@@ -34,10 +34,10 @@ class subscriber extends Controller {
         $password=$this->form->get("password")->isEmpty();
         $repassword=$this->form->get("repassword")->isEmpty();
         $tel=$this->form->get("tel")->isEmpty();	
-        // $this->form->GercektenMailmi($mail);	
-        // $sifre=$this->form->SifreTekrar($sifre,$sifretekrar);
+        $this->form->isRealEmail($email);	
+        $password=$this->form->passwordMatch($password,$repassword);
         
-    
+        
         
         if (!empty($this->form->error)) :
         
