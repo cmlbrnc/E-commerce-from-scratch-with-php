@@ -24,6 +24,37 @@
 	<script src="<?php  echo URL  ?>/views/design/js/simpleCart.min.js"> </script>
 <!-- cart -->
 <link rel="stylesheet" href="<?php  echo URL  ?>/views/design/css/flexslider.css" type="text/css" media="screen" />
+
+
+<script>
+$(document).ready(function(e){
+	$("#mainform").hide();
+	 $("#addcomment").click(function(e){
+	   
+		$("#mainform").slideToggle();
+
+	 });
+
+	 $("#sendcomment").click(function (e) { 
+		 e.preventDefault();
+		 $.ajax({
+			 type: "POST",
+			 url: "<?php  echo URL  ?>/views/pages/task.php?operation=addcomment",
+			 data: $('#commentform').serialize(),
+		
+			 success: function (response) {
+
+				 $("#commentform").trigger("reset");
+				 alert("hello");
+				 $('#formresult').html(response);
+				 
+			 }
+		 });
+		 
+	 });
+});
+
+</script>
 </head>
 <body>
 	<!-- header-section-starts -->

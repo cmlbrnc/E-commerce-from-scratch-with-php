@@ -26,23 +26,30 @@ class boots {
 
               
             } else {
+
+                echo "file not exist";
                 require 'controllers/errors.php';
 
                 $err= new errors();
             }
         }
-
-          if (isset($url[2])) {
+       
+        if (isset($url[3])) {
 
                  
-                    $maincontroller->{$url[1]}($url[2]);
-                } 
-                else {
-                    if (isset($url[1])) {
-                        $maincontroller->{$url[1]}();
-                    }
+            $maincontroller->{$url[1]}($url[2],$url[3]);
+
+
+
+        }else {
+            if (isset($url[2])) {
+                $maincontroller->{$url[1]}($url[2]);
+            } else {
+                if (isset($url[1])) {
+                    $maincontroller->{$url[1]}();
                 }
-        
+            }
+        }
     }
 
 }

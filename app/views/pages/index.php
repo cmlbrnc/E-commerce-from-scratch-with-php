@@ -76,12 +76,12 @@
 				?>
 
 				<div class="col-md-4 product simpleCart_shelfItem text-center">
-					<a href="productdetails/<?php  echo $value["id"]   ?> ">
+					<a href="<?php  echo URL;  ?>/products/details/<?php  echo $value["id"]   ?>/<?php echo $settings->seo(  $value["productname"])  ?>">
 					<img src="<?php echo URL  ?>/views/design/images/<?php echo $value["pic1"]  ?>" alt="<?php  echo $value["productname"]  ?>"/></a>
 					<div class="mask">
-						<a href="productdetails/<?php  echo $value["id"]   ?> ">Check out</a>
+						<a href="<?php  echo URL;  ?>/products/details/<?php  echo $value["id"]   ?>/<?php  echo $settings->seo( $value["productname"] ) ?>">Check out</a>
 					</div>
-					<a class="product_name" href="productdetails/<?php  echo $value["id"]   ?> "><?php  echo $value["productname"]  ?></a>
+					<a class="product_name" href="<?php  echo URL;  ?>/products/details/<?php  echo $value["id"]   ?>/<?php  echo $settings->seo( $value["productname"] ) ?>"><?php  echo $value["productname"]  ?></a>
 					<p><a class="item_add" href="#"><i></i> <span class="item_price"><?php  echo $value["price"]   ?></span></a></p>
 				</div>
 				<?php
@@ -103,10 +103,10 @@
 			
 				?>
 
-			<li><a href="productdetails/<?php  echo $value2["id"]   ?>">
+			<li><a href="<?php  echo URL;  ?>/products/details/<?php  echo $value2["id"]   ?>/<?php  echo $settings->seo( $value2["productname"] ) ?>">
 			<img src="<?php echo URL  ?>/views/design/images/<?php  echo $value2["pic2"]   ?>" class="img-responsive" alt="<?php  echo $value2["productname"]   ?>" /></a>
 				<div class="product liked-product simpleCart_shelfItem">
-					<a class="like_name" href="<?php  echo $value2["id"]   ?>"><?php  echo $value2["productname"]   ?></a>
+					<a class="like_name" href="<?php  echo URL;  ?><?php  echo $value2["id"]   ?>"><?php  echo $value2["productname"]   ?></a>
 					<p><a class="item_add" href="#"><i></i> <span class=" item_price"><?php  echo $value2["price"]   ?></span></a></p>
 				</div>
 			</li>
