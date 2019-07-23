@@ -62,7 +62,7 @@ function sync(cb) {
 }
 function build(cb) {
  
-  watch(['./app/*.php', './app/**/*.php','./app/**/**/*.php'], { events: 'all' }, function(cb) {
+  watch(['./app/*.php', './app/**/*.php','./app/**/**/*.php'], { delay: 500 }, function(cb) {
 
     console.log("file save");
     browserSync.reload();

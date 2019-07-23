@@ -11,6 +11,15 @@ class store_model extends Model{
      
     }
 
+    
+    function mainPageProducts($tablename,$condition) {
+     
+      return $this->db->listing($tablename,$condition);
+    }
+
+    
+    
+
       
 }
 

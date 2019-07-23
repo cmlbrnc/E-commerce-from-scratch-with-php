@@ -5,8 +5,12 @@ class Model {
  function __construct()
  {
      $this->db= new Database();
+    
  }
-
+ 
+ function setting() {
+    return $this->db->listing("settings");
+  }
   
 
 }

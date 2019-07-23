@@ -28,17 +28,17 @@ class Database extends PDO {
 
       $columnnames=join(",",$keys);
 
-      
-
+     
+         
       $query=$this->prepare('insert into '.$tablename.' ('.$columnnames.') VALUES('.$columnValues.')');
 
-      $query->execute($values);
-      if($query) {
+     
+      if($query->execute($values)) {
 
-        return $this->res->success("Succesfully Added","/user/add"); 
+        return 1; 
       }
       else {
-        return $this->res->failed("Db error has been occured","/user/add"); 
+        return 0; 
       }
 
     }

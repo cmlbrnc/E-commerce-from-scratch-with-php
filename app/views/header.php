@@ -1,7 +1,8 @@
+<?php  $settings=new Settings();   ?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>E-Commerce Bootstrap Responsive Website</title>
+<title> <?php  echo $settings->title;  ?></title>
 <link href="<?php  echo URL  ?>/views/design/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="<?php  echo URL  ?>/views/design/js/jquery.min.js"></script>
@@ -10,8 +11,10 @@
 <!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Eshop Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+
+<meta name="description" content="<?php  echo $settings->description;  ?>" />
+<meta name="keywords" content="<?php  echo $settings->keywords;  ?>" />
+
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--webfont-->
 <!-- for bootstrap working -->
@@ -29,8 +32,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="container">
 				<div class="header-top-left">
 					<ul>
-						<li><a href="account.html"><span class="glyphicon glyphicon-user"> </span>Login </a></li>
-						<li><a href="register.html"><span class="glyphicon glyphicon-lock"> </span>Create Account</a></li>			
+                   
+					<?php
+					
+					
+					if (Session::get("username")==true) : ?>
+					
+					<a href="<?php echo URL; ?>/subscriber/logout">Log Out</a>
+					
+					<?php else: ?>
+					
+					
+					<li><a href="<?php echo URL; ?>/subscriber/login"><span class="glyphicon glyphicon-user">
+						 </span>Log In </a></li>
+					<li><a href="<?php echo URL; ?>/subscriber/register"><span class="glyphicon glyphicon-lock"> 
+
+					</span>Register</a></li>	
+					
+					
+					
+					<?php
+					endif;
+							
+							
+							?>
+						
 					</ul>
 				</div>
 				<div class="header-right">
@@ -58,7 +84,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		        <span class="icon-bar"></span>
 	        </button>
 				<div class="logo">
-					<h1><a href="index.html"><span>E</span> E-Commerce</a></h1>
+					<h1><a href="<?php echo URL; ?>"><span>E</span> E-Commerce</a></h1>
 				</div>
 	    </div>
 	    <!--/.navbar-header-->
