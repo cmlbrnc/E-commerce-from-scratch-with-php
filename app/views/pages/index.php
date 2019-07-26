@@ -157,13 +157,17 @@
 		<div class="join">
 			<h6>NEWSLETTER</h6>
 			<div class="sub-left-right">
-				<form>
-					<input type="text" value="Enter Your Email Here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Email Here';}" />
-					<input type="submit" value="Subscribe" />
+				<form id="newsletterform" method="POST">
+					<input type="text" name="email" value="Enter Your Email Here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Email Here';}" />
+					<input type="submit" id="newsletterbtn"  class="btn " value="Subscribe" />
 				</form>
+			
 			</div>
 			<div class="clearfix"> </div>
 		</div>
+		<div id="newsletterresult"></div>
 	</div>
 </div>
+
+			
 <?php require 'views/footer.php' ?>

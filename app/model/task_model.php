@@ -1,6 +1,6 @@
 <?php
 
-class GenelGorev_model extends Model {
+class task_model extends Model {
 	
 	
 	function __construct() {		
@@ -9,17 +9,17 @@ class GenelGorev_model extends Model {
 	
 	
 	
-	function YorumEkleme($tabloisim,$sutunadlari,$veriler) {
-		
-		return $this->db->Ekle($tabloisim,$sutunadlari,$veriler);
+	function addcomment($tablename,$keys,$values) {
+	
+		return $this->db->add($tablename,$keys,$values);
 	
 		
 		
 	}
 	
-		function BultenEkleme($tabloisim,$sutunadlari,$veriler) {
-		
-		return $this->db->Ekle($tabloisim,$sutunadlari,$veriler);
+		function addNewsletter($tablename,$keys,$values) {
+		    
+			return $this->db->add($tablename,$keys,$values);
 	
 		
 		

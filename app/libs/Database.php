@@ -30,11 +30,12 @@ class Database extends PDO {
 
      
          
-      $query=$this->prepare('insert into '.$tablename.' ('.$columnnames.') VALUES('.$columnValues.')');
-
+       $query=$this->prepare('insert into '.$tablename.' ('.$columnnames.') VALUES('.$columnValues.')');
+        
+      
      
       if($query->execute($values)) {
-
+        
         return 1; 
       }
       else {

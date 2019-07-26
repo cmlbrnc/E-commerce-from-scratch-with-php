@@ -1,49 +1,89 @@
 <?php
 
-if(@$_GET["operation"]=="addcomment") {
-	echo "okay";
-}
-
 class task extends Controller  {
 	
 	
 	function __construct() {
 		parent::__construct();
 		
-	//$this->Modelyukle('GenelGorev');
+	$this->LoadModel('task');
 	
 	
 	}	
 	
-	function YorumFormKontrol() {
-		
-	$ad=$this->form->get("ad")->bosmu();
-	$yorum=$this->form->get("yorum")->bosmu();
-	$urunid=$this->form->get("urunid")->bosmu();
-	$tarih=date("d-m-Y");	
-	if (!empty($this->form->error)) :
-	
-	echo $this->bilgi->uyari("danger","LÜTFEN BOŞ ALAN BIRAKMAYINIZ");
-
-	else:
-	
+	function commentcontrol() {
 
 	
-		$sonuc=$this->model->YorumEkleme("yorumlar",
-		array("urunid","ad","icerik","tarih"),
-		array($urunid,$ad,$yorum,$tarih));
+	$name=$this->form->get("name")->isEmpty();
+	$comment=$this->form->get("comment")->isEmpty();
+	$productid=$this->form->get("productid")->isEmpty();
+	$date=date("d-m-Y");	
+	if (!empty($this->form->error)) {
+        echo $this->response->res("danger","Please fill out all fields");
+	}else {
+
+		$result=$this->model->addcomment("comments",
+		array("productid","name","context","date"),
+		array($productid,$name,$comment,$date));
 	
-		if ($sonuc==1):
+		if ($result==1):
 	
 
 		
-		echo $this->bilgi->uyari("success","Yorumunuz kayıt edildi. Onaylandıktan sonra yayınlanacaktır",'id="ok"');
+		echo $this->response->res("success","Your comment is successfully added",'id="ok"');
 		
 		else:
 		
 		
 	
-		echo $this->bilgi->uyari("danger","HATA OLUŞTU. LÜTFEN DAHA SONRA TEKRAR DENEYİNİZ");
+		echo $this->response->res("danger","HATA OLUŞTU. LÜTFEN DAHA SONRA TEKRAR DENEYİNİZ");
+		
+		endif;
+
+	}
+	
+
+	
+	
+	
+	
+	
+	
+	
+		
+	} // COMMENT CONTROL 
+	
+	
+	
+	function newslettercontrol() {
+	
+	$email=$this->form->get("email")->isEmpty();	
+	$this->form->isRealEmail($email);	
+	$date=date("d-m-Y");
+		
+	if (!empty($this->form->error)) :
+	
+	echo $this->response->res("danger","Email is not valid.");
+
+	else:
+	
+
+	
+		$result=$this->model->addNewsletter("emails",
+		array("email","date"),
+		array($email,$date));
+	
+		if ($result==1):
+	
+
+	
+		echo $this->response->res("success","You have been succesfully registered our newsletter",'id="newsletterok"');
+		
+		else:
+		
+		
+	
+		echo $this->response->res("danger","An error occured. Please try to register later.");
 		
 		endif;
 	
@@ -52,48 +92,7 @@ class task extends Controller  {
 	
 	
 		
-	} // YORUM  KONTROL
-	
-	
-	
-	function BultenKayit() {
-		
-	$mailadres=$this->form->get("mailadres")->bosmu();	
-	$this->form->GercektenMailmi($mailadres);	
-	$tarih=date("d-m-Y");
-		
-	if (!empty($this->form->error)) :
-	
-	echo $this->bilgi->uyari("danger","GİRİLEN MAİL ADRESİ GEÇERSİZ");
-
-	else:
-	
-
-	
-		$sonuc=$this->model->BultenEkleme("bulten",
-		array("mailadres","tarih"),
-		array($mailadres,$tarih));
-	
-		if ($sonuc==1):
-	
-
-		
-		echo $this->bilgi->uyari("success","Bultene Başarılı bir şekilde kayıt oldunuz. Teşekkür ederiz",'id="bultenok"');
-		
-		else:
-		
-		
-	
-		echo $this->bilgi->uyari("danger","HATA OLUŞTU. LÜTFEN DAHA SONRA TEKRAR DENEYİNİZ");
-		
-		endif;
-	
-	endif;
-	
-	
-	
-		
-	} // BULTEN KAYIT  KONTROL
+	} // newsletter control
 	
 	function iletisim() {
 		

@@ -91,7 +91,15 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="purchase">
-                    <input type="submit" class="btn btn-success" value="Add to Cart">
+                    <div class="row">
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-3"> <input type="number" min="1" max="20" value="1" class="form-control"> </div>
+                        <div class="col-sm-3"><input type="submit" class="btn offset__2" value="Add to Cart"></div>
+                    </div>
+
+
+
+                    
 
                     <div class="clearfix"></div>
                 </div>
@@ -130,8 +138,10 @@
 			  </div>
 			  <div role="tabpanel" class="tab-pane fade" id="comment" aria-labelledby="dropdown1-tab">
               
+
+            
              
-            <div class="row bg-color" id="formresult"></div>
+            <div class="row bg-color" id="result"></div>
              
              
              
@@ -140,13 +150,13 @@
              
             
              
-             <div class="row" id="formresult">result</div>
+           
              
              <div class="row bg-color" id="mainform">
              
              	<div class="col-lg-12">
                 <form id="commentform" >
-                <label class="offset_1">Name</label>
+                <label class="offset__1">Name</label>
                 </div>
                 
                 <div class="col-lg-12">
@@ -158,7 +168,7 @@
              
              	<div class="col-lg-12">
                
-                <label class="hizala_1">Comment</label>
+                <label class="offset__1">Comment</label>
                 </div>
                 
                 <div class="col-lg-12">

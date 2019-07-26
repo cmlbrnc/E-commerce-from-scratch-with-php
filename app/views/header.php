@@ -27,7 +27,7 @@
 
 
 <script>
-$(document).ready(function(e){
+  $(document).ready(function () {
 	$("#mainform").hide();
 	 $("#addcomment").click(function(e){
 	   
@@ -36,23 +36,64 @@ $(document).ready(function(e){
 	 });
 
 	 $("#sendcomment").click(function (e) { 
-		 e.preventDefault();
+		
 		 $.ajax({
-			 type: "POST",
-			 url: "<?php  echo URL  ?>/views/pages/task.php?operation=addcomment",
-			 data: $('#commentform').serialize(),
+			 type:"POST",
+			 url:'<?php  echo URL  ?>/task/commentcontrol',
+			 data:$('#commentform').serialize(),
 		
 			 success: function (response) {
-
-				 $("#commentform").trigger("reset");
-				 alert("hello");
-				 $('#formresult').html(response);
-				 
-			 }
+				$("#commentform").trigger("reset");
+				         
+						 $('#result').html(response);
+			              
+						 if($('#ok').html()=="Your comment is successfully added") 
+						 {
+						$("#mainform").fadeOut();
+						 }
+			 },
+			
 		 });
+		 e.preventDefault(); 
 		 
 	 });
-});
+
+	 $("[type='number']").keypress(function (evt) {
+		evt.preventDefault();
+		
+		
+	});
+
+
+	$("#newsletterbtn").click(function (e) { 
+		
+		$.ajax({
+			type:"POST",
+			url:'<?php  echo URL  ?>/task/newslettercontrol',
+			data:$('#newsletterform').serialize(),
+	   
+			success: function (response) {
+			   $("#newsletterform").trigger("reset");
+						
+						$('#newsletterresult').html(response);
+						 
+						if($('#newsletterok').html()=="You have been succesfully registered our newsletter") 
+						{
+					   $(".join").fadeOut();
+						}
+			},
+		   
+		});
+		e.preventDefault(); 
+		
+	});
+
+	
+  });
+
+		 
+	
+
 
 </script>
 </head>

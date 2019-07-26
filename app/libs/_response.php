@@ -14,11 +14,11 @@ class _response
     }
 
 
-    function res($type, $text)
+    function res($type, $text,$id=false)
     {
 
 
-        return '<div class="alert alert-' . $type . ' mt-2 p-3">' . $text . '</div>';
+        return '<div class="alert alert-' . $type . ' mt-2 p-3"'.$id.'>' . $text . '</div>';
     }
 
     function redirect($path)
