@@ -32,20 +32,20 @@ class products extends Controller  {
 		
 	}
 	
-	function category($id,$ad) {
+	function category($id,$name) {
 		
-		$sonuc=$this->model->getDb("products","where catid=".$id);
-		$CocukKAtBul=$this->model->getDb("alt_kategori","where id=".$id);
+		$result=$this->model->getDb("products","where catid=".$id);
+		$findChildCat=$this->model->getDb("alt_category","where id=".$id);
 		//13
 		
 	
 		
-		$this->view->goster("sayfalar/kategori",
+		$this->view->show("pages/products",
 		array(
-		"data1" => $sonuc,
-		"data2" => $this->model->uruncek("alt_kategori",
-		"where cocuk_kat_id=".$CocukKAtBul[0]["cocuk_kat_id"]." and id<>$id"),
-		"data3" =>$this->model->uruncek("urunler","where katid=".$id." and durum=1  LIMIT 5"), 
+		"data1" => $result,
+		"data2" => $this->model->getDb("alt_category",
+		"where child_cat_id=".$findChildCat[0]["child_cat_id"]." and id<>$id"),
+		"data3" =>$this->model->getDb("products","where catid=".$id." "), 
 		));
 		
 		

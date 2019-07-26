@@ -152,22 +152,7 @@
 	</div>
 </div>
 <!-- content-section-ends-here -->
-<div class="news-letter">
-	<div class="container">
-		<div class="join">
-			<h6>NEWSLETTER</h6>
-			<div class="sub-left-right">
-				<form id="newsletterform" method="POST">
-					<input type="text" name="email" value="Enter Your Email Here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Email Here';}" />
-					<input type="submit" id="newsletterbtn"  class="btn " value="Subscribe" />
-				</form>
-			
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-		<div id="newsletterresult"></div>
-	</div>
-</div>
+<?php  $settings->newsletter()  ?>
 
 			
 <?php require 'views/footer.php' ?>

@@ -256,16 +256,16 @@ echo '<div class="alert alert-danger text-center">There are comment about this p
 
 
             echo '<div class="col-md-4 product simpleCart_shelfItem text-center">
-                        <a href="' . URL . '/urunler/detay/' . $value["id"] . '/' . $settings->seo($value["productname"]) . '">
+                        <a href="' . URL . '/products/details/' . $value["id"] . '/' . $settings->seo($value["productname"]) . '">
 
                         <img src="' . URL . '/views/design/images/' . $value["pic1"] . '" alt="' . $value["productname"] . '" /></a>
 
 						<div class="mask">
-							<a href="' . URL . '/urunler/detay/' . $value["id"] . '/' . $settings->seo($value["productname"]) . '">More Details</a>
+							<a href="' . URL . '/products/details/' . $value["id"] . '/' . $settings->seo($value["productname"]) . '">More Details</a>
 							
 						</div>
 						
-						<a class="product_name" href="' . URL . '/urunler/detay/' . $value["id"] . '/' . $settings->seo($value["productname"]) . '">' . $value["productname"] . '</a>
+						<a class="product_name" href="' . URL . '/products/details/' . $value["id"] . '/' . $settings->seo($value["productname"]) . '">' . $value["productname"] . '</a>
 						<p><a class="item_add" href="#"><i></i> <span class="item_price">' . number_format($value["price"], 2, '.', ',') . '</span></a></p>
 					</div>';
 
@@ -275,11 +275,14 @@ echo '<div class="alert alert-danger text-center">There are comment about this p
 
         ?>
 
-
+   
         <div class="clearfix"></div>
     </div>
 </div>
 <!-- content-section-ends -->
+
+
+<?php  $settings->newsletter()  ?>
 
 
 <?php require 'views/footer.php' ?>
