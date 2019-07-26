@@ -90,6 +90,28 @@
 		e.preventDefault(); 
 		
 	});
+	$("#contactsubmit").click(function (e) { 
+		
+		$.ajax({
+			type:"POST",
+			url:'<?php  echo URL  ?>/task/contact',
+			data:$('#contactform').serialize(),
+	   
+			success: function (response) {
+			   $("#contactform").trigger("reset");
+					
+						$('#contactresult').html(response);
+						 
+						if($('#contactok').html()=="Your message has been sent") 
+						{
+					   $("#contactform").fadeOut();
+						}
+			},
+		   
+		});
+		e.preventDefault(); 
+		
+	});
 
 	
   });
@@ -136,7 +158,7 @@
 				</div>
 				<div class="header-right">
 						<div class="cart box_1">
-							<a href="checkout.html">
+							<a href="<?php echo URL; ?>/pages/checkout">
 								<h3> <span class="simpleCart_total"> £0.00 </span> (<span id="simpleCart_quantity" class="simpleCart_quantity"> 0 </span>)<img src="<?php  echo URL  ?>/views/design/images/bag.png" alt=""></h3>
 							</a>	
 							<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
@@ -166,11 +188,11 @@
 	
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	        <ul class="nav navbar-nav">
-			<li><a href="index.html">Home</a></li>
+			<li><a href="<?php echo URL; ?>">Home</a></li>
 			   
 			<?php  $settings->getLinks();  ?>
 				
-		    <li><a href="contact.html">Contact</a></li>
+		    <li><a href="<?php echo URL; ?>/pages/contact">Contact</a></li>
 	        </ul>
 	    </div>
 	    <!--/.navbar-collapse-->

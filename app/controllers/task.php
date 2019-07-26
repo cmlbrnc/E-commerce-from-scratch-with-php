@@ -94,40 +94,40 @@ class task extends Controller  {
 		
 	} // newsletter control
 	
-	function iletisim() {
+	function contact() {
 		
-	$ad=$this->form->get("ad")->bosmu();
-	$mail=$this->form->get("mail")->bosmu();
-	$konu=$this->form->get("konu")->bosmu();
-	$mesaj=$this->form->get("mesaj")->bosmu();
+	$name=$this->form->get("name")->isEmpty();
+	$email=$this->form->get("email")->isEmpty();
+	$subject=$this->form->get("subject")->isEmpty();
+	$message=$this->form->get("message")->isEmpty();
 	
 	
-	@$this->form->GercektenMailmi($mail);	
-	$tarih=date("d-m-Y");
+	@$this->form->isRealEmail($email);	
+	$date=date("d-m-Y");
 		
 	if (!empty($this->form->error)) :
 	
-	echo $this->bilgi->uyari("danger","LÜTFEN TÜM BİLGİLERİ UYGUN GİRİNİZ");
+	echo $this->response->res("danger","LÜTFEN TÜM BİLGİLERİ UYGUN GİRİNİZ");
 
 	else:
 	
 
 	
-		$sonuc=$this->model->iletisimForm("iletisim",
-		array("ad","mail","konu","mesaj","tarih"),
-		array($ad,$mail,$konu,$mesaj,$tarih));
+		$result=$this->model->contactForm("contact",
+		array("name","email","subject","message","date"),
+		array($name,$email,$subject,$message,$date));
 	
-		if ($sonuc==1):
+		if ($result==1):
 	
 
 		
-		echo $this->bilgi->uyari("success","Mesajınız Alındı. En kısa sürede Dönüş yapılacaktır. Teşekkür ederiz",'id="formok"');
+		echo $this->response->res("success","Your message has been sent",'id="contactok"');
 		
 		else:
 		
 		
 	
-		echo $this->bilgi->uyari("danger","HATA OLUŞTU. LÜTFEN DAHA SONRA TEKRAR DENEYİNİZ");
+		echo $this->response->res("danger","An error occured.");
 		
 		endif;
 	

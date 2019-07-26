@@ -1,6 +1,6 @@
 <?php
 
-class sayfalar extends Controller  {
+class pages extends Controller  {
 	
 	
 	function __construct() {
@@ -12,15 +12,15 @@ class sayfalar extends Controller  {
 	}	
 	
 	
-	function iletisim() {
+	function contact() {
 	
-	$this->view->goster("sayfalar/iletisim");
+	$this->view->show("pages/contact");
 		
 	}
 	
-	function sepet() {
+	function checkout() {
 	
-	$this->view->goster("sayfalar/sepet");
+	$this->view->show("pages/checkout");
 		
 	}
 	

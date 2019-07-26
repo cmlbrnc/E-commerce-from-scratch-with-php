@@ -25,9 +25,9 @@ class task_model extends Model {
 		
 	}
 	
-			function iletisimForm($tabloisim,$sutunadlari,$veriler) {
+			function contactForm($tablename,$keys,$values) {
 		
-		return $this->db->Ekle($tabloisim,$sutunadlari,$veriler);
+		return $this->db->add($tablename,$keys,$values);
 	
 		
 		
