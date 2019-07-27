@@ -91,15 +91,34 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="purchase">
-                    <div class="row">
-                        <div class="col-sm-6"></div>
-                        <div class="col-sm-3"> <input type="number" min="1" max="20" value="1" class="form-control"> </div>
-                        <div class="col-sm-3"><input type="submit" class="btn offset__2" value="Add to Cart"></div>
+
+                    <div class="row" id="avaiable">
+
+                        <div class="col-md-6" id="result"></div>
+
+                        <div class="col-md-3 text-right">
+
+                            <form id="cartform">
+
+                                <input type="number" min="1" max="10" value="1" name="number" class="form-control" />
+
+                        </div>
+
+
+
+                        <div class="col-md-3">
+                            <input type="hidden" name="id" value="<?php echo $data["data1"][0]["id"]; ?>" />
+                            <input type="button" class="btn offset__3" value="Add to Cart" id="cartbtn"></div>
+                        </form>
+
+
+
+
                     </div>
 
 
 
-                    
+
 
                     <div class="clearfix"></div>
                 </div>
@@ -119,125 +138,125 @@
             <div class="clearfix"></div>
             <div class="reviews-tabs">
 
-            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-			<ul id="myTab" class="nav nav-tabs" role="tablist">
-			  <li role="presentation" class="active"><a href="#info" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">More Infomation bilgi</a></li>
-			  <li role="presentation" class=""><a href="#attr" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">Attributes</a></li>
-			  
-              
-    			  <li role="presentation" class=""><a href="#comment" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">Comments  <?php  echo count ($data["data4"]);?> </a></li>
-              
-            
-			</ul>
-			<div id="myTabContent" class="tab-content">
-			  <div role="tabpanel" class="tab-pane fade active in" id="info" aria-labelledby="home-tab">
-				<p><?php echo $data["data1"][0]["extraInfo"]; ?></p>
-			  </div>
-			  <div role="tabpanel" class="tab-pane fade " id="attr" aria-labelledby="profile-tab">
-				<p><?php echo $data["data1"][0]["attr"]; ?></p>
-			  </div>
-			  <div role="tabpanel" class="tab-pane fade" id="comment" aria-labelledby="dropdown1-tab">
-              
+                <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                    <ul id="myTab" class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#info" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">More Infomation bilgi</a></li>
+                        <li role="presentation" class=""><a href="#attr" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">Attributes</a></li>
 
-            
-             
-            <div class="row bg-color" id="result"></div>
-             
-             
-             
-             <input type="button" id="addcomment"  value="Add comment" class="btn btn-sm- btn-info" />
-             
-             
-            
-             
-           
-             
-             <div class="row bg-color" id="mainform">
-             
-             	<div class="col-lg-12">
-                <form id="commentform" >
-                <label class="offset__1">Name</label>
-                </div>
-                
-                <div class="col-lg-12">
-               
-                <input type="text" name="name" class="form-control" maxlength="30"  required="required"/>
-                </div>
-             
-             
-             
-             	<div class="col-lg-12">
-               
-                <label class="offset__1">Comment</label>
-                </div>
-                
-                <div class="col-lg-12">
-               
-                <textarea name="comment" class="form-control"  required="required" ></textarea>
-                </div>
-             
-             
-                 <div class="col-lg-12 text-center">
-  <input type="hidden" name="productid"   value="<?php echo $data["data1"][0]["id"]; ?>"/>   
-                 
-                
-               <input type="button" id="sendcomment" value="Send" class="btn offset--2" />
-                </form>
-               
-                </div>
-             
-             
-             </div>
-             
-              
-                        <?php
-						
-						
-						if (count($data["data4"])==0):
-						
-						
-echo '<div class="alert alert-danger text-center">There are comment about this product in the section.</div>';
-						
-						else:
-						
-						foreach ($data["data4"] as $value) :
-			   
 
-				echo '<div class="media response-info comments">
+                        <li role="presentation" class=""><a href="#comment" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">Comments <?php echo count($data["data4"]); ?> </a></li>
+
+
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade active in" id="info" aria-labelledby="home-tab">
+                            <p><?php echo $data["data1"][0]["extraInfo"]; ?></p>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade " id="attr" aria-labelledby="profile-tab">
+                            <p><?php echo $data["data1"][0]["attr"]; ?></p>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="comment" aria-labelledby="dropdown1-tab">
+
+
+
+
+                            <div class="row bg-color" id="result"></div>
+
+
+
+                            <input type="button" id="addcomment" value="Add comment" class="btn btn-sm- btn-info" />
+
+
+
+
+
+
+                            <div class="row bg-color" id="mainform">
+
+                                <div class="col-lg-12">
+                                    <form id="commentform">
+                                        <label class="offset__1">Name</label>
+                                </div>
+
+                                <div class="col-lg-12">
+
+                                    <input type="text" name="name" class="form-control" maxlength="30" required="required" />
+                                </div>
+
+
+
+                                <div class="col-lg-12">
+
+                                    <label class="offset__1">Comment</label>
+                                </div>
+
+                                <div class="col-lg-12">
+
+                                    <textarea name="comment" class="form-control" required="required"></textarea>
+                                </div>
+
+
+                                <div class="col-lg-12 text-center">
+                                    <input type="hidden" name="productid" value="<?php echo $data["data1"][0]["id"]; ?>" />
+
+
+                                    <input type="button" id="sendcomment" value="Send" class="btn offset--2" />
+                                    </form>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <?php
+
+
+                            if (count($data["data4"]) == 0) :
+
+
+                                echo '<div class="alert alert-danger text-center">There are comment about this product in the section.</div>';
+
+                            else :
+
+                                foreach ($data["data4"] as $value) :
+
+
+                                    echo '<div class="media response-info comments">
 							<div class="media-left response-text-left" id="commentname">								
-								<h5>'.$value["name"].'</h5>
+								<h5>' . $value["name"] . '</h5>
 							</div>
                             
                             
 							<div class="media-body response-text-right">
-								<p>'.$value["context"].'</p>
+								<p>' . $value["context"] . '</p>
 								<ul>
-									<li>'.$value["date"].'</li>
+									<li>' . $value["date"] . '</li>
 									
 								</ul>
 							</div>
 							<div class="clearfix"> </div>
-						</div>';	   
-			
-			   
-			   endforeach;
-						
-						endif;
-						
-			   
-					
-					?>
-              
-				
-                 
-                
-                
-                
-			  </div>
-			  
-			</div>
-		   </div>
-              
+						</div>';
+
+
+                                endforeach;
+
+                            endif;
+
+
+
+                            ?>
+
+
+
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
 
         </div>
@@ -275,14 +294,14 @@ echo '<div class="alert alert-danger text-center">There are comment about this p
 
         ?>
 
-   
+
         <div class="clearfix"></div>
     </div>
 </div>
 <!-- content-section-ends -->
 
 
-<?php  $settings->newsletter()  ?>
+<?php $settings->newsletter()  ?>
 
 
 <?php require 'views/footer.php' ?>

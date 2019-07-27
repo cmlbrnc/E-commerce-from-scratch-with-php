@@ -3107,3 +3107,83 @@ p.right {
 
 	color:#55065a;
 }
+
+
+.qty li {
+	text-align:center;
+	
+	
+}
+
+.qty li h3 {
+	color:#F03;
+	font-size:18px;
+	
+
+	
+	
+}
+
+.qty li span {
+	color:#727272;
+	
+	font-size:24px;
+
+	
+	
+}
+
+.delivery span {
+		color:#F03;
+	font-size:18px;
+	background-color:#D5D5D5;
+	padding:10px;
+	border-radius:10px;
+}
+
+.total__field {
+	text-align:right;
+	padding:10px 0px 10px 0px;
+	
+	
+	
+}
+
+.total__field .btn_1 {
+	
+	background-color:#55065a;
+	color:#FCFCFC;
+
+	
+}
+.total__field .btn_1:hover {
+	background-color:#906;
+
+	color:#FFF;
+}
+
+.total__field .btn_2 {
+	
+	background-color:#55065a;
+	color:#FCFCFC;
+
+	
+}
+.total__field .btn_2:hover {
+	background-color:#906;
+
+	color:#FFF;
+}
+
+
+.total__field-2 {
+	background-color:#DADADA;
+	font-size:24px;
+	color:#693;
+
+	text-align:right;
+	padding:10px 0px 10px 0px;
+	
+	
+	
+}

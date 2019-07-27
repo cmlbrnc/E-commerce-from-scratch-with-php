@@ -132,4 +132,11 @@ class Settings  extends Model
 		</div>
 	<?php
 	}
+
+
+	function getProduct($id) {
+	
+		return $this->db->listing("products","where id=".$id);
+			
+		} // ÜRÜN ÇEK
 }

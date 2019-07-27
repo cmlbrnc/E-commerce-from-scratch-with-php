@@ -1,120 +1,144 @@
 <?php require 'views/header.php' ?>
 
-		<!-- checkout -->
-		<div class="cart-items">
+<!-- checkout -->
+<div class="cart-items">
 	<div class="container">
-	<div class="dreamcrub">
-			   	 <ul class="breadcrumbs">
-                    <li class="home">
-                       <a href="<?php echo URL; ?>" title="Go to Home Page">Home</a>&nbsp;
-                       <span>&gt;</span>
-                    </li>
-                    <li class="women">
-                       Cart
-                    </li>
-                </ul>
-                <ul class="previous">
-                	<li><a href="<?php echo URL; ?>">Back to Previous Page</a></li>
-                </ul>
-                <div class="clearfix"></div>
-			   </div>
-			 <h2>MY SHOPPING BAG (3)</h2>
-		<div class="cart-gd">
-				<script>$(document).ready(function(c) {
-					$('.close1').on('click', function(c){
-						$('.cart-header').fadeOut('slow', function(c){
-							$('.cart-header').remove();
-						});
-						});	  
-					});
-			   </script>
-			 <div class="cart-header">
-				 <div class="close1"> </div>
+
+		<?php if (isset($_COOKIE["product"])) : ?>
+
+
+			<div class="cart-gd">
+
+				<?php
+
+
+
+
+				$totalNumber = 0;
+				$totalPrice = 0;
+
+				echo "<form id='itemsform'>";
+
+
+				foreach ($_COOKIE["product"] as $id => $number) :
+
+
+					$product = $settings->getProduct($id);
+
+					//	$id db ye ilgili ürünü çekicem ve listelicem
+
+				echo ' <div class="cart-header">
+					 <div class="close1">
+				      <input type="button" class="btn btn-sm btn-success" data-value="' . $product[0]["id"] . '" value="Update">'; ?>
+
+
+					<a onclick='RemoveProduct("<?php echo $product[0]["id"] ?>")' class="btn btn-sm btn-danger">Remove</a>
+
+
+					<?php echo '</div>
 				 <div class="cart-sec simpleCart_shelfItem">
 						<div class="cart-item cyc">
-							 <img src="<?php  echo URL  ?>/views/design/images/l1.jpg" class="img-responsive" alt="">
+							 <img src="' . URL . '/views/design/images/' . $product[0]["pic1"] . '" class="img-responsive" alt="' . $product[0]["productname"] . '">
 						</div>
 					   <div class="cart-item-info">
-						<h3><a href="#"> Lorem Ipsum is not simply </a><span>Pickup time:</span></h3>
+						<h3><a href="#"> ' . $product[0]["productname"] . ' </a></h3>
+						
 						<ul class="qty">
-							<li><p>Min. order value:</p></li>
-							<li><p>FREE delivery</p></li>
+							<li><h3>Product Price</h3>
+							<span>' . number_format($product[0]["price"], 2, '.', ',') . '</span></li>
+							<li><h3>items</h3>
+							
+		  <input type="number" min="1" max="10" value="' . $number . '" name="number' . $product[0]["id"] . '" class="form-control" /> 
+	
+		  
+							</li>
 						</ul>
-							 <div class="delivery">
-							 <p>Service Charges : $10.00</p>
-							 <span>Delivered in 1-1:30 hours</span>
+							 <div class="delivery" >
+							
+							 <span>Total : ' . number_format($product[0]["price"] * $number, 2, ',', '.') . '</span>
 							 <div class="clearfix"></div>
 				        </div>	
 					   </div>
 					   <div class="clearfix"></div>
 											
 				  </div>
-			 </div>
-			 <script>$(document).ready(function(c) {
-					$('.close2').on('click', function(c){
-							$('.cart-header2').fadeOut('slow', function(c){
-						$('.cart-header2').remove();
-					});
-					});	  
-					});
-			 </script>
-			 <div class="cart-header2">
-				 <div class="close2"> </div>
-				  <div class="cart-sec simpleCart_shelfItem">
-						<div class="cart-item cyc">
-							 <img src="<?php  echo URL  ?>/views/design/images/l2.jpg" class="img-responsive" alt="">
-						</div>
-					   <div class="cart-item-info">
-						<h3><a href="#"> Lorem Ipsum is not simply </a><span>Pickup time:</span></h3>
-						<ul class="qty">
-							<li><p>Min. order value:</p></li>
-							<li><p>FREE delivery</p></li>
-						</ul>
-							 <div class="delivery">
-							 <p>Service Charges : $10.00</p>
-							 <span>Delivered in 3-3:30 hours</span>
-							 <div class="clearfix"></div>
-				        </div>	
-					   </div>
-					   <div class="clearfix"></div>
-											
-				  </div>
-			  </div>
-			  <script>$(document).ready(function(c) {
-					$('.close3').on('click', function(c){
-							$('.cart-header3').fadeOut('slow', function(c){
-						$('.cart-header3').remove();
-					});
-					});	  
-					});
-			 </script>
-			  <div class="cart-header3">
-				 <div class="close3"> </div>
-				  <div class="cart-sec simpleCart_shelfItem">
-						<div class="cart-item cyc">
-							 <img src="<?php  echo URL  ?>/views/design/images/l3.jpg" class="img-responsive" alt="">
-						</div>
-					   <div class="cart-item-info">
-						<h3><a href="#"> Lorem Ipsum is not simply </a><span>Pickup time:</span></h3>
-						<ul class="qty">
-							<li><p>Min. order value:</p></li>
-							<li><p>FREE delivery</p></li>
-						</ul>
-							 <div class="delivery">
-							 <p>Service Charges : $10.00</p>
-							 <span>Delivered On Tomorrow</span>
-							 <div class="clearfix"></div>
-				        </div>	
-					   </div>
-					   <div class="clearfix"></div>
-											
-				  </div>
-			  </div>
+			 </div>';
+
+
+					$totalNumber  += $number;
+					$totalPrice += $product[0]["price"] * $number;
+
+
+				endforeach;
+
+
+				echo "</form>";
+
+				echo '
+				
+				<div class="row total__field-2">
+				<div class="col-md-12">
+				<span>Total Number : </span>' . count($_COOKIE["product"]) . '<br>
+				
+				<span>Unit Number : </span>' . $totalNumber . '<br>
+				<span>Total Price : </span>' . number_format($totalPrice, 2, ',', '.') . '<br>
+				
+				</div>
+				
+				</div>
+				
+				
+				
+				<div class="row total__field">
+				<div class="col-md-12">
+	  <a href="' . URL . '/task/dropcart" class="btn btn-danger">Discard All</a> 
+				<a href="' . URL . '" class="btn btn_1 ">Continue shopping...</a>
+				<a href="' . URL . '/pages/checkout-order" class="btn btn_1 ">Checkout your products</a>
+				
+				
+				
+				</div>
+				
+				</div>';
+
+
+
+
+
+			else :
+
+
+				echo '<div class="alert alert-info text-center"><h3>There is no item in your cart.</h3></div>';
+
+
+
+				echo '	<div class="row total__field">
+				<div class="col-md-12">
+				
+				<a href="' . URL . '" class="btn btn_1">Continue shopping...</a>
+			
+				
+				
+				
+				</div>
+				
+				</div>';
+
+			endif;
+
+
+			?>
+
+
+
+
+
+
 		</div>
 	</div>
 </div>
 
-<!-- //checkout -->	
+<!-- //checkout -->
 
-			
+
 <?php require 'views/footer.php' ?>

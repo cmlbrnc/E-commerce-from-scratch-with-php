@@ -42,15 +42,7 @@ class task extends Controller  {
 
 	}
 	
-
 	
-	
-	
-	
-	
-	
-	
-		
 	} // COMMENT CONTROL 
 	
 	
@@ -137,12 +129,63 @@ class task extends Controller  {
 	}
 	
 
+	function AddtoCart() {
 	
+
+		
+		Cookie::addtoCart($this->form->get("id")->isEmpty(),$this->form->get("number")->isEmpty());
+		
+	}
+	
+	function removeproduct() {
+		if ($_POST) :		
+		Cookie::removeProduct($_POST["productid"]);
+		endif;	
+	}
+	
+	function updatecart () {
+		if ($_POST) :		
+		Cookie::UpdateCart($_POST["productid"],$_POST["number"]);
+		endif;	
+	}
+	
+	function dropcart () {
+		
+		$this->response->redirect("/pages/checkout");
+		
+		Cookie::removeAll()();
+		
+	}
+	
+	
+	function checkoutcontrol() {
+		
+		echo '<a href="'.URL.'/pages/checkout">
+		<h3> <img src="'.URL.'/views/design/images/bag.png" alt=""> </h3>
+							
+                            
+		<p>';
+		
+		
+		
+		if (isset($_COOKIE["product"])) :
+		
+			echo count($_COOKIE["product"]);
+			
+			
+			else:
+			
+			echo "Empty Cart";
+		endif;
+		
+		
+	
+		
+		echo'</p></a>';
+	
+	
+		
+	}
 
 	
 }
-
-
-
-
-?>
