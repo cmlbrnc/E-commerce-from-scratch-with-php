@@ -23,14 +23,14 @@
                 </ul>
             </div>
             <div class="latest-bis">
-                <img src="images/l4.jpg" class="img-responsive" alt="" />
+                <img src="<?php echo URL; ?>/views/design/images/l4.jpg" class="img-responsive" alt="" />
                 <div class="offer">
                     <p>40%</p>
                     <small>Discount</small>
                 </div>
             </div>
             <div class="latest-bis">
-                <img src="images/l4.jpg" class="img-responsive" alt="" />
+                <img src="<?php echo URL; ?>/views/design/images/l4.jpg" class="img-responsive" alt="" />
                 <div class="offer">
                     <p>10%</p>
                     <small>Discount 2</small>
@@ -107,7 +107,8 @@
 
 
                         <div class="col-md-3">
-                            <input type="hidden" name="id" value="<?php echo $data["data1"][0]["id"]; ?>" />
+                            <input type="hidden" name="productid" value="<?php echo $data["data1"][0]["id"]; ?>" />
+                            <input type="hidden" name="subsid" value="<?php echo Session::get("subsid"); ?>" />
                             <input type="button" class="btn offset__3" value="Add to Cart" id="cartbtn"></div>
                         </form>
 
@@ -160,27 +161,28 @@
 
 
 
-                            <div class="row bg-color" id="result"></div>
+                        <div class="row bg-color" id="commentresult"></div>
 
-
+                            <?php  if(Session::get("username")) {  ?>         
 
                             <input type="button" id="addcomment" value="Add comment" class="btn btn-sm- btn-info" />
-
-
+                             
+                                
 
 
 
 
                             <div class="row bg-color" id="mainform">
-
+                               <form id="commentform">
                                 <div class="col-lg-12">
-                                    <form id="commentform">
-                                        <label class="offset__1">Name</label>
+                               
+                                <label class="offset__1">Name</label>
+                                        
                                 </div>
 
                                 <div class="col-lg-12">
 
-                                    <input type="text" name="name" class="form-control" maxlength="30" required="required" />
+                                    <input type="text" name="name" class="form-control" maxlength="30" required="required" value="<?php  echo Session::get("username");  ?>" readonly >
                                 </div>
 
 
@@ -197,10 +199,12 @@
 
 
                                 <div class="col-lg-12 text-center">
-                                    <input type="hidden" name="productid" value="<?php echo $data["data1"][0]["id"]; ?>" />
+                                    <input type="hidden" name="productid" value="<?php echo $data["data1"][0]["id"]; ?>" >
+                                 
+                                     <input type="hidden" name="subsid" value="<?php echo Session::get("subsid"); ?>" >
 
 
-                                    <input type="button" id="sendcomment" value="Send" class="btn offset--2" />
+                                    <input type="button" name="button" id="sendcomment" value="Send" class="btn offset--2" >
                                     </form>
 
                                 </div>
@@ -210,12 +214,14 @@
 
 
                             <?php
-
+                            }else {
+                                echo '<div class="alert alert-danger text-center">Please subscribe us or login to comment...</div>';
+                            }
 
                             if (count($data["data4"]) == 0) :
 
 
-                                echo '<div class="alert alert-danger text-center">There are comment about this product in the section.</div>';
+                                echo '<div class="alert alert-danger text-center">There are not comments about this product in the section.</div>';
 
                             else :
 

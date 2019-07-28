@@ -30,7 +30,7 @@
 					</ul>
 				</div>
 				<!--banner-->
-				<script src="js/responsiveslides.min.js"></script>
+				<script src="<?php echo URL  ?>/views/design/js/responsiveslides.min.js"></script>
 				<script>
 					// You can also use "$(window).load(function() {"
 					$(function() {

@@ -32,7 +32,7 @@
 				      <input type="button" class="btn btn-sm btn-success" data-value="' . $product[0]["id"] . '" value="Update">'; ?>
 
 
-					<a onclick='RemoveProduct("<?php echo $product[0]["id"] ?>")' class="btn btn-sm btn-danger">Remove</a>
+					<a onclick='Remove("<?php echo $product[0]["id"] ?>","removeproduct")' class="btn btn-sm btn-danger">Remove</a>
 
 
 					<?php echo '</div>

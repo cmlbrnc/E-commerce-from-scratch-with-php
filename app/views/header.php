@@ -1,12 +1,13 @@
-<?php $settings = new Settings();   ?>
+<?php $settings = new Settings(); ob_start();  ?>
 <!DOCTYPE html>
 <html>
 
 <head>
 	<title> <?php echo $settings->title;  ?></title>
 	<link href="<?php echo URL  ?>/views/design/css/bootstrap.css" rel='stylesheet' type='text/css' />
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<!-- jQuery necessary for Bootstrap's JavaScript plugins -->
 	<script src="<?php echo URL  ?>/views/design/js/jquery.min.js"></script>
+	<script src="<?php echo URL  ?>/views/design/js/main.js"></script>
 	<!-- Custom Theme files -->
 	<link href="<?php echo URL  ?>/views/design/css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- Custom Theme files -->
@@ -38,145 +39,7 @@
 
 
 
-	<script>
-		$(document).ready(function() {
-           
-		    $("#cartstatus").load("<?php echo URL; ?>/task/checkoutcontrol");
-
-
-
-			$("#mainform").hide();
-			$("#addcomment").click(function(e) {
-
-				$("#mainform").slideToggle();
-
-			});
-
-			$("#sendcomment").click(function(e) {
-
-				$.ajax({
-					type: "POST",
-					url: '<?php echo URL  ?>/task/commentcontrol',
-					data: $('#commentform').serialize(),
-
-					success: function(response) {
-						$("#commentform").trigger("reset");
-
-						$('#result').html(response);
-
-						if ($('#ok').html() == "Your comment is successfully added") {
-							$("#mainform").fadeOut();
-						}
-					},
-
-				});
-				e.preventDefault();
-
-			});
-
-			$("[type='number']").keypress(function(evt) {
-				evt.preventDefault();
-
-
-			});
-
-
-			$("#newsletterbtn").click(function(e) {
-
-				$.ajax({
-					type: "POST",
-					url: '<?php echo URL  ?>/task/newslettercontrol',
-					data: $('#newsletterform').serialize(),
-
-					success: function(response) {
-						$("#newsletterform").trigger("reset");
-
-						$('#newsletterresult').html(response);
-
-						if ($('#newsletterok').html() == "You have been succesfully registered our newsletter") {
-							$(".join").fadeOut();
-						}
-					},
-
-				});
-				e.preventDefault();
-
-			});
-			$("#contactsubmit").click(function(e) {
-
-				$.ajax({
-					type: "POST",
-					url: '<?php echo URL  ?>/task/contact',
-					data: $('#contactform').serialize(),
-
-					success: function(response) {
-						$("#contactform").trigger("reset");
-
-						$('#contactresult').html(response);
-
-						if ($('#contactok').html() == "Your message has been sent") {
-							$("#contactform").fadeOut();
-						}
-					},
-
-				});
-				e.preventDefault();
-
-			});
-
-			$("#cartbtn").click(function(e) {
-
-				$.ajax({
-					type: "POST",
-					url: '<?php echo URL  ?>/task/AddtoCart',
-					data: $('#cartform').serialize(),
-
-					success: function(response) {
-
-						$("html,body").animate({scrollTop:0},"slow");
-
-						$("#cartstatus").load("<?php echo URL; ?>/task/checkoutcontrol");
-						$("#cartform").trigger("reset");
-
-						$('#cartresult').html(response);
-
-						$('#avaiable').html('<div class="alert alert-success">Added to Cart</div>');
-
-
-
-					},
-
-				});
-				e.preventDefault();
-
-			});
-
-			$('#itemsform input[type="button"]').click(function (e) { 
-			
-			var id=$(this).attr('data-value');
-				
-		    var number=$('#itemsform input[name="number'+id+'"]').val();
-			
-
-			$.post("<?php echo URL; ?>/task/updatecart",{"productid":id,"number":number},() => {
-				 window.location.reload();
-			 })
-			
-		});
-
-
-
-		});
-     
-		function RemoveProduct(value) {
-             
-			 $.post("<?php echo URL; ?>/task/removeproduct",{"productid":value},() => {
-				 window.location.reload();
-			 })
-		
-
-		}
-	</script>
+	
 </head>
 
 <body>
@@ -193,7 +56,7 @@
 
 						if (Session::get("username") == true) : ?>
 
-							<a href="<?php echo URL; ?>/subscriber/logout">Log Out</a>
+							<a href="<?php echo URL; ?>/subscriber/panel">My Account</a>
 
 						<?php else : ?>
 

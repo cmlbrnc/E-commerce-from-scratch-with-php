@@ -35,7 +35,7 @@ class Database extends PDO {
       
      
       if($query->execute($values)) {
-        
+    
         return 1; 
       }
       else {
@@ -47,20 +47,27 @@ class Database extends PDO {
     function listing ($tablename,$condition=false) {
         
       if($condition==false) {
-
+    
+        
          $query ="select *from ".$tablename;
+         
       
       }else {
-
+      
         $query ="select *from ".$tablename." ".$condition;
 
 
       }
-
+          
+     
       $end=$this->prepare($query);
-      $end->execute();
+      if($end->execute()){
+        return $end->fetchAll();
+      }else {
+        return 0;
+      }
 
-      return $end->fetchAll();
+      
 
     }
     function search ($tablename,$condition) {
@@ -79,18 +86,18 @@ class Database extends PDO {
 
     function delete ($tablename,$id) {
 
-      $query ="delete from ".$tablename." where id=".$id;
+      $query ="delete from ".$tablename." where ".$id;
 
       $end=$this->prepare($query);
+
+    
       if($end->execute())
       {
-        return $this->res->success("Succesfully Deleted","/user/listing"); 
+        return true; 
 
       }else {
 
-        $query->errorInfo();
-
-        return $this->res->failed($query,"/user/listing"); 
+        return false; 
 
       }
     
@@ -113,13 +120,13 @@ class Database extends PDO {
       $end=$this->prepare($query);
       if($end->execute($data))
       {
-        return $this->res->success("Succesfully Update","/user/listing"); 
+        return 1; 
 
       }else {
 
       
 
-        return $this->res->error("Database Error!","/user/listing"); 
+        return false; 
 
       }
     
@@ -132,16 +139,16 @@ class Database extends PDO {
       $query ="select * from ".$tablename." where ".$condition;
 
 
-      $end=$this->prepare($query);
-      $end->execute();
-      if($end->rowCount()>0){
-        Session::init();
-        Session::set("username",true);
-
+      $final=$this->prepare($query);
+     
+      if( $final->execute()){
+       
+        return $final->fetchAll();
+      }else {
+          return false;
       }
 
-      return  $end->rowCount();
-
+     
     }
 
 }

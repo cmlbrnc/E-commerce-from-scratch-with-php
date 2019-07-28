@@ -3187,3 +3187,206 @@ p.right {
 	
 	
 }
+
+//Subscriber Panel
+
+#subscont {
+	background-color:#E8E8E8;
+		
+		min-height:400px;
+		margin-top:10px;
+}
+
+#menu {
+	border-right:1px  #D5D5D5 solid;
+}
+
+
+#subspanel li {
+	list-style:none;
+	background-color:#E8E8E8;
+	
+	font-size:16px;
+	padding:10px;
+	border-bottom:1px  #D5D5D5 solid;
+	
+}
+#subspanel #hdr {
+	background-color:#55065a;	
+	color:#FAFAFA;
+	padding:10px;
+	margin-bottom:10px;
+	
+}
+
+#subspanel li:hover {
+	background-color:#55065a;
+	background-color:rgb(102, 100, 100);
+	cursor:pointer;
+	
+	
+}
+
+#subspanel li a:link,#subspanel li a:visited {
+	text-decoration: none;
+	color: #55065a;
+	cursor:pointer;
+	
+	
+}
+#subspanel li a:hover{
+
+	color: #55065a;
+
+	
+	
+}
+
+
+/*---------------Subscriber functions styles-------------*/
+
+table  {
+	border:1px solid #D6D6D6; 
+
+
+	
+	
+}
+
+table tr td  {
+	border:1px solid #D6D6D6;
+	
+
+
+
+	
+	
+}
+
+table #hdr {
+	font-weight:900;
+	color:#000;
+	
+	
+}
+#address-structure {
+	border:1px solid #D6D6D6;
+	padding:5px;
+	min-height:100px;
+	margin:2px;
+	background-color:#E3E3E3;
+	border-radius:10px;
+	overflow:hidden;	
+}
+
+#address-structure:hover {
+	background-color:#E6E6E6;
+	cursor:pointer;
+	
+}
+#addressid {
+	border-bottom:1px solid #D6D6D6;
+	min-height:100px;
+	
+}
+
+#address-updatebtn {
+	margin-top:3px;
+	float:left;
+	
+}
+
+#address-deletebtn {
+	margin-top:3px;
+	float:right;
+	
+}
+
+
+#address-elements {
+	color:#606060;
+	font-weight:300;
+	
+	
+
+	
+}
+
+#address-elements td {
+	padding-top:10px;
+	padding-bottom:0px;
+	
+	
+	
+
+	
+}
+
+#address-elements td .onayli{
+	color:#990;
+
+	
+}
+
+#address-elements td .onaysiz{
+	color:#F00;
+
+	
+}
+#cntr {
+	margin:auto;
+	background-color:#DCDCDC;
+		border:#CACACA 1px solid;
+}
+
+#rws input[type="text"] {
+	margin:5px 0px 0px 0px;
+	
+	
+	
+	
+}
+
+#rws input[type="password"] {
+	margin:5px 0px 0px 0px;
+	
+	
+	
+	
+}
+#rws label {
+	margin:5px 0px 0px 0px;
+	padding-top:10px;
+	float:left;
+	
+	
+	
+}
+
+#rws .col-md-7,#satirlar .col-md-5 {
+	height:45px;
+	border-bottom:#CACACA 1px solid;
+
+	
+	
+}
+
+#rws .col-md-12 input[type="submit"] {
+background-color:#55065a;
+	color:#FCFCFC;
+	margin:5px 0px 5px 0px;
+
+	
+	
+}
+
+#rwshdr {
+background-color:#55065a;
+	color:#FCFCFC;
+	border-bottom:#CACACA 1px solid;
+	padding:10px;	
+
+	
+	
+}
+	

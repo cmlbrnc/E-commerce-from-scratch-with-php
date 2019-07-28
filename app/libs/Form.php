@@ -57,7 +57,7 @@ function encode($data) {
     
   } // data encode
   
-function coz($data) {
+function decode($data) {
     
     return unserialize(gzuncompress(gzinflate(base64_decode($data))));
   } // data decode		

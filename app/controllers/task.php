@@ -17,19 +17,18 @@ class task extends Controller  {
 	$name=$this->form->get("name")->isEmpty();
 	$comment=$this->form->get("comment")->isEmpty();
 	$productid=$this->form->get("productid")->isEmpty();
+	$subsid=$this->form->get("subsid")->isEmpty();
 	$date=date("d-m-Y");	
 	if (!empty($this->form->error)) {
         echo $this->response->res("danger","Please fill out all fields");
 	}else {
 
 		$result=$this->model->addcomment("comments",
-		array("productid","name","context","date"),
-		array($productid,$name,$comment,$date));
+		array("subsid","productid","name","context","date"),
+		array($subsid,$productid,$name,$comment,$date));
 	
 		if ($result==1):
-	
 
-		
 		echo $this->response->res("success","Your comment is successfully added",'id="ok"');
 		
 		else:
@@ -133,15 +132,19 @@ class task extends Controller  {
 	
 
 		
-		Cookie::addtoCart($this->form->get("id")->isEmpty(),$this->form->get("number")->isEmpty());
+		Cookie::addtoCart($this->form->get("productid")->isEmpty(),$this->form->get("number")->isEmpty());
 		
 	}
 	
 	function removeproduct() {
-		if ($_POST) :		
+	
+		if ($_POST) :
+		
 		Cookie::removeProduct($_POST["productid"]);
 		endif;	
 	}
+
+	
 	
 	function updatecart () {
 		if ($_POST) :		
