@@ -25,6 +25,13 @@ class subscriber_model extends Model{
       
       
     }
+    function addToDb($tablename,$keys,$values) {
+     
+      return $this->db->add($tablename,$keys,$values);
+    
+      
+      
+    }
 
 
   
@@ -67,22 +74,22 @@ class subscriber_model extends Model{
       
     } // get
     
-    function TopluislemBaslat() {		
+    function stackOperationStart() {		
     return $this->db->beginTransaction();	
       
     }
     
-    function TopluislemTamamla() {
+    function stackOperationEnd() {
     return $this->db->commit();
     }
     
     
     
-    function SiparisTamamlama($veriler) {
+    function completeorder($data) {
     
-    return $this->db->siparisTamamla($veriler);
+    return $this->db->completeOrder($data);
       
-    } // SİPARİŞ TAMAMLAMA
+    } // complete order
    
 }
 

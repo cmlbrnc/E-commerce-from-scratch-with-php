@@ -1,5 +1,8 @@
 <?php require 'views/header.php' ?>
-	
+<?php
+
+
+if (!Session::get("username")) :  Session::sessionControl(Session::get("username"),Session::get("subsid")); ?>
 	<!-- content-section-starts -->
 	<div class="content">
 	<div class="container">
@@ -58,5 +61,13 @@
 			 </div>
 		   </div>
 </div>
+<?php
+else:
+  	
+	header("Location:".URL);
+endif;
+
+
+?>
 
 <?php require 'views/footer.php' ?>

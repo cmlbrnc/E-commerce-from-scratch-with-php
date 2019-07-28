@@ -1,8 +1,9 @@
 <?php  
 
 class Session {
-
+	public static $db;
 public static function init (){
+   self::$db= new Database();
    session_start();
 }
 public static function set ($key,$value){
@@ -16,6 +17,21 @@ public static function get ($key){
 public static function destroy (){
    session_destroy();
 }
+
+public static function sessionControl($value1,$value2) {
+		
+   $result=self::$db->listing("subscribers","where name='".$value1."' and id=".$value2);
+  
+  
+  if (!isset($result[0])) :
+  
+  
+  self::destroy();
+  
+  endif;	
+
+     
+  }
   
 
 }

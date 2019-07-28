@@ -31,7 +31,7 @@ class Database extends PDO {
      
          
        $query=$this->prepare('insert into '.$tablename.' ('.$columnnames.') VALUES('.$columnValues.')');
-        
+       
       
      
       if($query->execute($values)) {
@@ -58,15 +58,17 @@ class Database extends PDO {
 
 
       }
-          
+      // print_r($query);   
      
       $end=$this->prepare($query);
       if($end->execute()){
         return $end->fetchAll();
+       
       }else {
         return 0;
       }
 
+     
       
 
     }
@@ -149,6 +151,23 @@ class Database extends PDO {
       }
 
      
+    }
+
+
+    function completeOrder($data=array()) {
+     
+      
+    
+     
+		
+      $query=$this->prepare('insert into orders (order_no,addressid,subsid,name,quantity,price,totalprice,payment_type,date)
+      VALUES(?,?,?,?,?,?,?,?,?)'); 
+      
+      
+      $query->execute($data);
+      
+      
+      
     }
 
 }

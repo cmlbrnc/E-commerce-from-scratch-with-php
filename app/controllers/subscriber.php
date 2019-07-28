@@ -108,8 +108,8 @@ class subscriber extends Controller
 			//**db control
 			$password = $this->form->encode($password);
 			$result = $this->model->LoginController("subscribers", " name='$name' and password='$password' ");
-			print_r($result);
-			if (count($result) > 0) {
+		
+			if ($result ) {
 
 				$this->response->redirect("/subscriber/panel");
 				Session::init();
@@ -263,14 +263,14 @@ class subscriber extends Controller
 
 
 
-				$sonuc = $this->model->update(
+				$result = $this->model->update(
 					"subscribers",
 					array("name", "lastname", "email", "phone"),
 					array($name, $lastname, $email, $phone),
 					"id=" . $subsid
 				);
 
-				if ($sonuc) :
+				if ($result) :
 
 					$this->view->show(
 						"pages/panel",
@@ -395,61 +395,62 @@ class subscriber extends Controller
 	//***********  Subs panel functions ends
 
 
-	function siparisTamamlandi()
+	function ordercompleted()
 	{
 
 		if ($_POST) :
 
 
-			$ad = $this->form->get("ad")->bosmu();
-			$soyad = $this->form->get("soyad")->bosmu();
-			$mail = $this->form->get("mail")->bosmu();
-			$telefon = $this->form->get("telefon")->bosmu();
-			$toplam = $this->form->get("toplam")->bosmu();
+			$name = $this->form->get("name")->isEmpty();
+			$lastname = $this->form->get("lastname")->isEmpty();
+			$email = $this->form->get("email")->isEmpty();
+			$phone = $this->form->get("phone")->isEmpty();
+			$total = $this->form->get("total")->isEmpty();
 
 
-			$odeme = $this->form->get("odeme")->bosmu();
-			$adrestercih = $this->form->get("adrestercih")->bosmu();
-			$odemeturu = ($odeme == 1) ? "Nakit" : "Hata";
-			$tarih = date("d.m.Y");
+			$payment = $this->form->get("payment")->isEmpty();
+			$addresspref = $this->form->get("addre_prefe")->isEmpty();
+			$paymentType = ($payment == 1) ? "Paypal" : "Credit Card";
+			$date = date("d.m.Y");
 
 
 			if (!empty($this->form->error)) :
-				$this->view->goster(
-					"sayfalar/siparistamamla",
-					array("bilgi" => $this->bilgi->uyari("danger", "Bilgiler eksiksiz doldurulmalıdır"))
+				$this->view->show(
+					"pages/completed",
+					array("info" => $this->response->res("danger", "You must fill mising information in the form"))
 				);
 
 
 			else :
 
-				$siparisNo = mt_rand(0, 99999999);
-				$uyeid = Session::get("uye");
+				$orderNo = mt_rand(0, 99999999);
+			    $subsid = Session::get("subsid");
 
-				$this->model->TopluislemBaslat();
-
-
-				if (isset($_COOKIE["urun"])) :
+				$this->model->stackOperationStart();
 
 
-					foreach ($_COOKIE["urun"] as $id => $adet) :
-
-						$GelenUrun = $this->model->SiparisTamamlamaUrunCek("urunler", "where id=" . $id);
+				if (isset($_COOKIE["product"])) :
 
 
-						$birimfiyat = $GelenUrun[0]["fiyat"] * $adet;
+					foreach ($_COOKIE["product"] as $id => $quantity) :
 
-						$this->model->SiparisTamamlama(
+					$product = $this->model->get("products", "where id=" . $id);
+
+
+						$unitPrice = $product[0]["price"] * $quantity;
+
+						
+						$this->model->completeorder(
 							array(
-								$siparisNo,
-								$adrestercih,
-								$uyeid,
-								$GelenUrun[0]["urunad"],
-								$adet,
-								$GelenUrun[0]["fiyat"],
-								$birimfiyat,
-								$odemeturu,
-								$tarih
+								$orderNo,
+								$addresspref,
+								$subsid,
+								$product[0]["productname"],
+								$quantity,
+								$product[0]["price"],
+								$unitPrice,
+								$payment,
+								$date
 
 							)
 						);
@@ -460,39 +461,39 @@ class subscriber extends Controller
 
 
 				else :
-					// cookie  tanımlı değilse diye bir knotrol
-					$this->bilgi->direktYonlen("/");
+					// cookie  control
+					$this->response->redirect("/");
 
 				endif;
 
 
-				$this->model->TopluislemTamamla();
+				$this->model->stackOperationEnd();
 
 
-				Cookie::SepetiBosalt(); // sepeti boşalttık
+				Cookie::removeAll(); // drop cart
 
 
-				$TeslimatBilgileri = $this->model->Ekleİslemi(
-					"teslimatbilgileri",
-					array("siparis_no", "ad", "soyad", "mail", "telefon"),
+				$deliveryInfo = $this->model->addToDb(
+					"deliveryinfo",
+					array("order_no", "name", "lastname", "email", "phone"),
 					array(
-						$siparisNo,
-						$ad,
-						$soyad,
-						$mail,
-						$telefon
+						$orderNo,
+						$name,
+						$lastname,
+						$email,
+						$phone
 					)
 				);
 
 
 
-				if ($TeslimatBilgileri) :
+				if ($deliveryInfo) :
 
-					$this->view->goster(
-						"sayfalar/siparistamamlandi",
+					$this->view->show(
+						"pages/completed",
 						array(
-							"siparisno" => $siparisNo,
-							"toplamtutar" => $toplam
+							"order_no" => $orderNo,
+							"total" => $total
 						)
 					);
 
@@ -500,9 +501,9 @@ class subscriber extends Controller
 
 				else :
 
-					$this->view->goster(
-						"sayfalar/siparisitamamla",
-						array("bilgi" => $this->bilgi->uyari("danger", "Sipariş oluşturulurken hata oluştu"))
+					$this->view->show(
+						"pages/complete",
+						array("info" => $this->response->res("danger", "There is an error occured whilst order transciton"))
 					);
 
 				endif;
@@ -513,8 +514,8 @@ class subscriber extends Controller
 
 		else :
 
-			$this->bilgi->direktYonlen("/");
+			$this->response->redirect("/");
 		endif;
-	} // SİPARİŞ TAMAMLANDI
+	} // ORDER COMPLETED
 
 }

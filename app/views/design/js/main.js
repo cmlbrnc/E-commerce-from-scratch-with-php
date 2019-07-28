@@ -3,7 +3,7 @@ $(document).ready(function () {
 
 
 
-    $("#cartstatus").load("http://localhost:8080/PHP-MVC-Ecommerce-from-scratch/app/task/checkoutcontrol");
+    $("#cartstatus").load("http://localhost/PHP-MVC-Ecommerce-from-scratch/app/task/checkoutcontrol");
 
 
 
@@ -28,7 +28,7 @@ $(document).ready(function () {
             console.log(obj.name + obj.value);
         });
 
-        $.post("http://localhost:8080/PHP-MVC-Ecommerce-from-scratch/app/task/commentcontrol", data,
+        $.post("http://localhost/PHP-MVC-Ecommerce-from-scratch/app/task/commentcontrol", data,
             function (data, textStatus, jqXHR) {
 
                 $("#commentform").trigger("reset");
@@ -56,7 +56,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: 'http://localhost:8080/PHP-MVC-Ecommerce-from-scratch/app/task/newslettercontrol',
+            url: 'http://localhost/PHP-MVC-Ecommerce-from-scratch/app/task/newslettercontrol',
             data: $('#newsletterform').serialize(),
 
             success: function (response) {
@@ -77,7 +77,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: 'http://localhost:8080/PHP-MVC-Ecommerce-from-scratch/app/task/contact',
+            url: 'http://localhost/PHP-MVC-Ecommerce-from-scratch/app/task/contact',
             data: $('#contactform').serialize(),
 
             success: function (response) {
@@ -99,14 +99,14 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: 'http://localhost:8080/PHP-MVC-Ecommerce-from-scratch/app/task/AddtoCart',
+            url: 'http://localhost/PHP-MVC-Ecommerce-from-scratch/app/task/AddtoCart',
             data: $('#cartform').serialize(),
 
             success: function (response) {
 
                 $("html,body").animate({ scrollTop: 0 }, "slow");
 
-                $("#cartstatus").load("http://localhost:8080/PHP-MVC-Ecommerce-from-scratch/app/task/checkoutcontrol");
+                $("#cartstatus").load("http://localhost/PHP-MVC-Ecommerce-from-scratch/app/task/checkoutcontrol");
                 $("#cartform").trigger("reset");
 
                 $('#cartresult').html(response);
@@ -129,7 +129,7 @@ $(document).ready(function () {
         var number = $('#itemsform input[name="number' + id + '"]').val();
 
 
-        $.post("http://localhost:8080/PHP-MVC-Ecommerce-from-scratch/app/task/updatecart", { "productid": id, "number": number }, () => {
+        $.post("http://localhost/PHP-MVC-Ecommerce-from-scratch/app/task/updatecart", { "productid": id, "number": number }, () => {
             window.location.reload();
         })
 
@@ -168,7 +168,7 @@ $(document).ready(function () {
 
 
 
-        $.post("http://localhost:8080/PHP-MVC-Ecommerce-from-scratch/app/subscriber/updatecomment", { "commentid": id, "comment": $(this).val() }, function (data) {
+        $.post("http://localhost/PHP-MVC-Ecommerce-from-scratch/app/subscriber/updatecomment", { "commentid": id, "comment": $(this).val() }, function (data) {
 
             //alert(donen);
 
@@ -214,7 +214,7 @@ $(document).ready(function () {
 
 
 
-        $.post("http://localhost:8080/PHP-MVC-Ecommerce-from-scratch/app/subscriber/updateaddress", { "addressid": id, "address": $(this).val() }, function (data) {
+        $.post("http://localhost/PHP-MVC-Ecommerce-from-scratch/app/subscriber/updateaddress", { "addressid": id, "address": $(this).val() }, function (data) {
 
         
 
@@ -229,7 +229,51 @@ $(document).ready(function () {
     });
 
     //----------------------Subscirbers panel updates Address-----------------------------------------------------end
+     //---------------------- Complete order jquery-----------------------------------------------------end	
+	var name,lastname,email,phone;
+	
+	
+	$('input[name=preference]').on('change',function() {
+		
+	
+		
+		var preference=$(this).val(); // 0-1
+		
+		if (preference==1) 		
+		{
+           
+			name=$('input[id=name]').val();
+			lastname=$('input[id=lastname]').val();
+			email=$('input[id=email]').val();
+			phone=$('input[id=phone]').val();
+			
+			
+			 $('input[id=name]').val("");
+			 $('input[id=lastname]').val("");
+			 $('input[id=email]').val("");
+			 $('input[id=phone]').val("");
+			
+		}
+		
+		else {
 
+            
+			
+			 $('input[id=name]').val(name);
+			 $('input[id=lastname]').val(lastname);
+			 $('input[id=email]').val(email);
+			 $('input[id=phone]').val(phone);	
+			
+		}
+		
+
+
+		
+	
+	
+		
+	});
+	
 
 
 
@@ -240,7 +284,7 @@ function Remove(value, criteria) {
     switch (criteria) {
         case "removeproduct":
 
-            $.post("http://localhost:8080/PHP-MVC-Ecommerce-from-scratch/app/task/removeproduct", { "productid": value }, () => {
+            $.post("http://localhost/PHP-MVC-Ecommerce-from-scratch/app/task/removeproduct", { "productid": value }, () => {
                 window.location.reload();
             });
 
@@ -250,7 +294,7 @@ function Remove(value, criteria) {
 
 
 
-            $.post("http://localhost:8080/PHP-MVC-Ecommerce-from-scratch/app/subscriber/deletecomment", { "commentid": value },
+            $.post("http://localhost/PHP-MVC-Ecommerce-from-scratch/app/subscriber/deletecomment", { "commentid": value },
                 function (data, textStatus, jqXHR) {
 
                     if (data) {
@@ -273,7 +317,7 @@ function Remove(value, criteria) {
 
         case "deleteaddress":
 
-            $.post("http://localhost:8080/PHP-MVC-Ecommerce-from-scratch/app/subscriber/deleteaddress", { "addressid": value }, (data) => {
+            $.post("http://localhost/PHP-MVC-Ecommerce-from-scratch/app/subscriber/deleteaddress", { "addressid": value }, (data) => {
                 console.log(data);
                 if (data) {
                     $("#panelresult").html("The Comment has been successfully removed");

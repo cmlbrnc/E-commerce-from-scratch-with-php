@@ -80,7 +80,7 @@ function passwordMatch($value1,$value2) {
   } // matching
   
   
-public static function element_init($criteria,array $data) {
+public static function element_init($criteria,array $data=NULL) {
   
   /*
   1 form
@@ -93,6 +93,7 @@ public static function element_init($criteria,array $data) {
   case "1": echo '<form ';	break;
   case "2": echo '<input ';	break;
   case "3": echo '<textarea '; break;		
+  case "close": echo '</form> '; break;		
   endswitch;		
   
     

@@ -5,7 +5,7 @@ class Settings  extends Model
 
 	public $result, $title, $description, $keywords, $sloganUp1, $sloganDown1, $sloganUp2, $sloganDown2, $sloganUp3, $sloganDown3;
 
-
+	public $links=array(),$mostsell=array(),$leaststock=array(),$popularcategory=array();
 
 
 	function __construct()
@@ -26,6 +26,10 @@ class Settings  extends Model
 		$this->sloganDown2 = $this->result[0]["sloganDown2"];
 		$this->sloganUp3 = $this->result[0]["sloganUp3"];
 		$this->sloganDown3 = $this->result[0]["sloganDown3"];
+
+		$this->mostsell=$this->db->listing("products","order by id desc LIMIT 8");
+		$this->leaststock=$this->db->listing("products","where stock < 200 order by stock asc LIMIT 8");	
+		$this->popularcategory=$this->db->listing("alt_category","order by rand() LIMIT 8");
 	}
 
 
@@ -445,19 +449,19 @@ class Settings  extends Model
 
 	<?php
 
-	} // PANEL - ÜYENİN ŞİFRE DEĞİŞTİRME
+	} // PANEL - change password end
 
-	//*****************************************************
+	//*************COMPLETE ORDER**************get subs infor and address**************************
 
-	function UyeBilgileriniGetir()
+	function getSubsInfo()
 	{
 
-		return $this->db->listele("uye_panel", "where id=" . Session::get("uye"));
-	} // SİPARİŞ TAMAMLA - ÜYE BİLGİLERİNİ GETİRİYOR
+		return $this->db->listing("subscribers", "where id=" . Session::get("subsid"));
+	} // 
 
-	function UyeAdresleriniGetir()
+	function getAdresses()
 	{
 
-		return $this->db->listele("adresler", "where uyeid=" . Session::get("uye"));
-	} // SİPARİŞ TAMAMLA - ÜYE ADRESLERİ GETİRİYOR	
+		return $this->db->listing("addresses", "where subsid=" . Session::get("subsid"));
+	} // 	
 }

@@ -13,9 +13,11 @@ spl_autoload_register(function($className) {
 
 require 'config/general.php';
 require 'config/database.php';
+require 'Route.php';
+;
 
 
-$boots = new boots();
+$route = new Route();
 
 
 

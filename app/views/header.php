@@ -54,7 +54,7 @@
 						<?php
 
 
-						if (Session::get("username") == true) : ?>
+						if (Session::get("username") == true) :  Session::sessionControl(Session::get("username"),Session::get("subsid")); ?>
 
 							<a href="<?php echo URL; ?>/subscriber/panel">My Account</a>
 

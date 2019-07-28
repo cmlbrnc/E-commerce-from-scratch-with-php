@@ -8,7 +8,7 @@
 	
 
 if (Session::get("username") && Session::get("subsid")) {
-    // Session::OturumKontrol(Session::get("username"),Session::get("subsid")); ?>
+	Session::sessionControl(Session::get("username"),Session::get("subsid")); ?>
 
 	<div class="container" id="subscont">
     

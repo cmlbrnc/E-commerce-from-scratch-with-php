@@ -93,7 +93,7 @@
 				<div class="col-md-12">
 	  <a href="' . URL . '/task/dropcart" class="btn btn-danger">Discard All</a> 
 				<a href="' . URL . '" class="btn btn_1 ">Continue shopping...</a>
-				<a href="' . URL . '/pages/checkout-order" class="btn btn_1 ">Checkout your products</a>
+				<a href="' . URL . '/pages/completeorder" class="btn btn_1 ">Checkout your products</a>
 				
 				
 				

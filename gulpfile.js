@@ -52,7 +52,7 @@ function sync(cb) {
             './app/**/**/**/*.php',
             ''
      ],
-     port: 8080
+     port: 3000
 
     });
 
@@ -62,7 +62,7 @@ function sync(cb) {
 }
 function build(cb) {
  
-  watch(['./app/*.php', './app/**/*.php','./app/**/**/*.php'], { delay: 500 }, function(cb) {
+  watch(['./app/*.php', './app/**/*.php','./app/**/**/*.php'], { queue: false }, function(cb) {
 
     console.log("file save");
     browserSync.reload();
